@@ -8,6 +8,23 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 **/
 
 #include "UsbMass.h"
+#include <Protocol/UsbDebug.h>
+
+VOID
+UsbMassPrint (
+  IN USB_MASS_DEVICE   *UsbMass
+  )
+{
+  EFI_STATUS              Status;
+  EFI_GUID                UsbIoDebugProtGuid = USB_IO_DEBUG_PROT_GUID;
+  USB_IO_DEBUG_PROTOCOL   *UsbIoDebugProt;
+
+  Status = gBS->LocateProtocol (&UsbIoDebugProtGuid, NULL, &UsbIoDebugProt);
+  DEBUG ((DEBUG_INFO, "guomin: Locate UsbIoDebugProt %r\n", Status));
+  if (!EFI_ERROR(Status)) {
+    UsbIoDebugProt->UsbIoPrint (UsbMass->UsbIo);
+  }
+}
 
 /**
   Execute REQUEST SENSE Command to retrieve sense data from device.
@@ -628,7 +645,7 @@ UsbBootGetParams (
   EFI_STATUS                  Status;
 
   Media  = &(UsbMass->BlockIoMedia);
-
+  UsbMassPrint (UsbMass);
   Status = UsbBootInquiry (UsbMass);
   if (EFI_ERROR (Status)) {
     DEBUG ((EFI_D_ERROR, "UsbBootGetParams: UsbBootInquiry (%r)\n", Status));

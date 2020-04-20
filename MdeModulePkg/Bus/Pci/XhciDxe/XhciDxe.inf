@@ -41,6 +41,7 @@
   Xhci.h
   XhciReg.h
   XhciSched.h
+  UsbHcDebug.c
 
 [Packages]
   MdePkg/MdePkg.dec

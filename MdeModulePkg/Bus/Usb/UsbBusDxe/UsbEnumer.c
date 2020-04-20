@@ -9,6 +9,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include "UsbBus.h"
 
+VOID InstallUsbIoPrintProt (VOID);
+
 /**
   Return the endpoint descriptor in this interface.
 
@@ -146,7 +148,7 @@ UsbCreateInterface (
                   &UsbIf->UsbIo,
                   NULL
                   );
-
+  InstallUsbIoPrintProt ();
   if (EFI_ERROR (Status)) {
     DEBUG ((EFI_D_ERROR, "UsbCreateInterface: failed to install UsbIo - %r\n", Status));
     goto ON_ERROR;

@@ -8,6 +8,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include "Xhci.h"
 
+VOID InstallUsbHcProt (VOID);
+
 //
 // Two arrays used to translate the XHCI port state (change)
 // to the UEFI protocol's port state (change).
@@ -2077,6 +2079,7 @@ XhcDriverBindingStart (
                   EFI_NATIVE_INTERFACE,
                   &Xhc->Usb2Hc
                   );
+  InstallUsbHcProt ();
   if (EFI_ERROR (Status)) {
     DEBUG ((EFI_D_ERROR, "XhcDriverBindingStart: failed to install USB2_HC Protocol\n"));
     goto FREE_POOL;

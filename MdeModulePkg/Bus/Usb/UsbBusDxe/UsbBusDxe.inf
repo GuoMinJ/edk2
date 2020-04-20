@@ -40,6 +40,7 @@
   UsbUtility.c
   UsbDesc.h
   UsbBus.h
+  UsbBusDebug.c
 
 [Packages]
   MdePkg/MdePkg.dec
