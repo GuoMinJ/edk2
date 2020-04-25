@@ -106,6 +106,7 @@ UsbMassReadBlocks (
   EFI_STATUS          Status;
   EFI_TPL             OldTpl;
   UINTN               TotalBlock;
+  static BOOLEAN      ResetNotRun = TRUE;
 
   //
   // Raise TPL to TPL_CALLBACK to serialize all its operations
@@ -173,6 +174,10 @@ UsbMassReadBlocks (
 
   if (EFI_ERROR (Status)) {
     DEBUG ((EFI_D_ERROR, "UsbMassReadBlocks: UsbBootReadBlocks (%r) -> Reset\n", Status));
+    UsbMassReset (This, TRUE);
+  }
+  if (ResetNotRun) {
+    ResetNotRun = FALSE;
     UsbMassReset (This, TRUE);
   }
 
