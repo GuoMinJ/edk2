@@ -111,8 +111,8 @@ BEGIN {
             # Generate dso_conf.h per config data
             system(
                 "perl -I. -Mconfigdata util/dofile.pl " .
-                "crypto/include/internal/dso_conf.h.in " .
-                "> include/internal/dso_conf.h"
+                "include/crypto/dso_conf.h.in " .
+                "> include/crypto/dso_conf.h"
                 ) == 0 ||
                     die "Failed to generate dso_conf.h!\n";
 
@@ -267,9 +267,9 @@ copy($OPENSSL_PATH . "/include/openssl/opensslconf.h",
      $OPENSSL_PATH . "/../../Include/openssl/") ||
    die "Cannot copy opensslconf.h!";
 print "Done!";
-print "\n--> Duplicating dso_conf.h into Include/internal ... ";
-copy($OPENSSL_PATH . "/include/internal/dso_conf.h",
-     $OPENSSL_PATH . "/../../Include/internal/") ||
+print "\n--> Duplicating dso_conf.h into Include/crypto ... ";
+copy($OPENSSL_PATH . "/include/crypto/dso_conf.h",
+     $OPENSSL_PATH . "/../../Include/crypto/") ||
    die "Cannot copy dso_conf.h!";
 print "Done!\n";
 

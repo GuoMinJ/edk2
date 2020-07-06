@@ -1,5 +1,5 @@
 /* WARNING: do not edit! */
-/* Generated from crypto/include/internal/dso_conf.h.in */
+/* Generated from include/crypto/dso_conf.h.in */
 /*
  * Copyright 2016-2019 The OpenSSL Project Authors. All Rights Reserved.
  *
@@ -9,8 +9,8 @@
  * https://www.openssl.org/source/license.html
  */
 
-#ifndef HEADER_DSO_CONF_H
-# define HEADER_DSO_CONF_H
+#ifndef OSSL_CRYPTO_DSO_CONF_H
+# define OSSL_CRYPTO_DSO_CONF_H
 # define DSO_NONE
 # define DSO_EXTENSION ".so"
 #endif
